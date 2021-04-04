@@ -1,5 +1,6 @@
 import requests
 import csv
+import os
 from bs4 import BeautifulSoup
  
 url = input('Enter the url  :  ')
@@ -15,9 +16,9 @@ with open('output.csv', 'w') as f:
         for a in i.findAll('a'):
             repo_name = i.text.strip()
             repo_link = url + a["href"]
-            name = repo_name[0:6]
+            name = repo_name.replace('-',' ')
  
         print( repo_name , repo_link , name )
         writer.writerow([repo_name , repo_link , name])
- 
+print("\n\nData has been stored in this directory: " + os.getcwd()) 
 f.close()
